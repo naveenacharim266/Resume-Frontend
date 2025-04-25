@@ -36,3 +36,6 @@
     transform: rotate(360deg);
   }
 }
+aside {
+  background: linear-gradient(to bottom right, #1e3a8a, #6b21a8); /* from-blue-900 to-purple-800 */
+}
