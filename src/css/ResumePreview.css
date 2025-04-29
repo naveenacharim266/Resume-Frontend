@@ -1,0 +1,14 @@
+.resume-box {
+    max-width: 800px;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    color: #212529;
+  }
+  .resume-box h5 {
+    margin-top: 1rem;
+  }
+  .resume-box ul {
+    padding-left: 1.25rem;
+  }
+  
