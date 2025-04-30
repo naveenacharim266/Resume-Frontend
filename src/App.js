@@ -25,7 +25,7 @@ function App() {
             <Link to="/skills" className="nav-link text-white">Skills</Link>
             <Link to="/education" className="nav-link text-white">Education</Link>
             <Link to="/preview" className="nav-link text-white">Preview</Link>
-            <Link to="/login" className="nav-link text-white mt-4">Logout</Link>
+            <Link to="/login" className="nav-link text-white ">Logout</Link>
           </nav>
         </aside>
 
