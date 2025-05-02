@@ -31,7 +31,7 @@ const BasicDetailsForm = () => {
         
         if (response.ok && data.status === "success" && data.basicdetails && typeof data.basicdetails === "object") {
           const details = data.basicdetails;
-  
+          
           const sanitize = (val) => typeof val === "string" ? val : (val ?? "").toString();
   
           const fetchedForm = {

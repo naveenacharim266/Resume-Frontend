@@ -11,7 +11,7 @@ const ResumePreview = () => {
   const handleDownloadPDF = () => {
     const opt = {
       margin: 0.3,
-      filename: 'Naveenachari_Resume.pdf',
+      filename: `${resumeData.basic.name}.pdf`,
       image: { type: 'jpeg', quality: 0.98 },
       html2canvas: { scale: 2 },
       jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' },
@@ -27,7 +27,7 @@ const ResumePreview = () => {
     //     throw new Error('User ID not found. Please login.');
     //   }
         //`http://127.0.0.1:8000/api/getResumeData/?user_id=${userId}
-      const response = await fetch(`http://127.0.0.1:8000/api/getResumeData/`, {
+      const response = await fetch(`http://127.0.0.1:8000/api/getResumeData/?user_id=${userId}`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
       });

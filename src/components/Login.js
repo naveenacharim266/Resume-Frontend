@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import '../css/login.css';
+import { useNavigate, Link } from 'react-router-dom';
+
 const Login = ({ onLogin }) => {
   const [form, setForm] = useState({ username: '', password: '' });
   const [message, setMessage] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
+
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
@@ -18,7 +21,7 @@ const Login = ({ onLogin }) => {
       const res = await fetch('http://127.0.0.1:8000/login/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        credentials: 'include', 
+        credentials: 'include',
         body: JSON.stringify(form),
       });
 
@@ -26,11 +29,10 @@ const Login = ({ onLogin }) => {
 
       if (res.ok && data.status === 'success') {
         localStorage.setItem('userId', data.user_id);
-        navigate('/basic');
         if (typeof onLogin === 'function') {
-          onLogin(data.user_id); 
-          
+          onLogin(data.user_id);
         }
+        navigate('/'); // Redirect to dashboard
       } else {
         setMessage(data.message || 'Invalid credentials');
       }
@@ -43,32 +45,28 @@ const Login = ({ onLogin }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="container py-4">
-      <h2>Login</h2>
-      {message && <div className="alert alert-danger">{message}</div>}
-      
-      <input
-        type="text"
-        name="username"
-        value={form.username}
-        onChange={handleChange}
-        placeholder="Username"
-        className="form-control mb-2"
-        required
-      />
-      <input
-        type="password"
-        name="password"
-        value={form.password}
-        onChange={handleChange}
-        placeholder="Password"
-        className="form-control mb-2"
-        required
-      />
-      <button type="submit" className="btn btn-primary" disabled={isSubmitting}>
-        {isSubmitting ? 'Logging in...' : 'Login'}
-      </button>
-    </form>
+    <div className='login-container'>
+      <div className='left'>
+        <div className='logo'>
+          🔥 Resume Maker
+          <h2>Welcome !</h2>
+          <p>To stay connected with us please login with your personal info</p>
+        </div>
+      </div>
+      <div className='right'>
+        {message && <div className="alert alert-danger">{message}</div>}
+        <h2>Welcome</h2>
+        <p>Login in to your account to continue</p>
+        <form onSubmit={handleSubmit}>
+          <input type='text' placeholder='username...' name="username" value={form.username} onChange={handleChange} required className='login-input'/>
+          <input type='password' placeholder='password...' name="password" value={form.password} onChange={handleChange} required className='login-input'/>
+          <button type="submit" className="btn" disabled={isSubmitting}>
+            {isSubmitting ? 'Logging in...' : 'LOG IN'}
+          </button>
+          <p className="signup">Don't have an account? <Link to="/register">Sign up</Link></p>
+        </form>
+      </div>
+    </div>
   );
 };
 

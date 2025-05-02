@@ -144,7 +144,7 @@ const SkillsForm = () => {
         <button className="btn btn-outline-secondary" onClick={() => navigate('/project')}>
           Back
         </button>
-        <button className="btn btn-outline-primary" onClick={() => navigate('/education')}>
+        <button className="btn btn-outline-primary" onClick={() => navigate('/preview')}>
           Next
         </button>
       </div>
